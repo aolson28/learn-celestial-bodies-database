@@ -50,7 +50,7 @@ SET default_table_access_method = heap;
 CREATE TABLE public.galaxy (
     galaxy_id integer NOT NULL,
     name character varying,
-    number_of_stars numeric NOT NULL,
+    apparent_magnitude numeric NOT NULL,
     is_visible_to_eye boolean NOT NULL,
     distance_from_earth integer
 );
@@ -89,7 +89,7 @@ CREATE TABLE public.moon (
     planet_id integer,
     name character varying,
     shape character varying(30) NOT NULL,
-    moon_mass_tons integer NOT NULL
+    mean_radius_km integer NOT NULL
 );
 
 
@@ -266,65 +266,119 @@ ALTER TABLE ONLY public.telescope ALTER COLUMN telescope_id SET DEFAULT nextval(
 -- Data for Name: galaxy; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.galaxy VALUES (1, 'Milky Way', -6.5, true, 0);
+INSERT INTO public.galaxy VALUES (2, 'Andromeda Galaxy', 3.4, true, 2500000);
+INSERT INTO public.galaxy VALUES (3, 'Triangulum Galaxy', 5.7, true, 2900000);
+INSERT INTO public.galaxy VALUES (4, 'Centaurus A', 6.84, true, 13700000);
+INSERT INTO public.galaxy VALUES (5, 'Sculpton Galaxy', 8.0, true, 12000000);
+INSERT INTO public.galaxy VALUES (6, 'Large Magellanic Cloud', 0.9, true, 160000);
 
 
 --
 -- Data for Name: moon; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.moon VALUES (1, 3, 'Moon', 'Round', 1738);
+INSERT INTO public.moon VALUES (2, 4, 'Phobos', 'bumpy', 11);
+INSERT INTO public.moon VALUES (3, 4, 'Deimos', 'lumpy', 6);
+INSERT INTO public.moon VALUES (4, 5, 'Io', 'round', 1822);
+INSERT INTO public.moon VALUES (5, 5, 'Europa', 'round', 1561);
+INSERT INTO public.moon VALUES (6, 5, 'Ganymede', 'Round', 2634);
+INSERT INTO public.moon VALUES (7, 5, 'Callisto', 'round', 2410);
+INSERT INTO public.moon VALUES (8, 5, 'Amalthea', 'bumpy and oblong', 83);
+INSERT INTO public.moon VALUES (9, 5, 'Himalia', 'small', 69);
+INSERT INTO public.moon VALUES (10, 5, 'Elara', 'oblong', 43);
+INSERT INTO public.moon VALUES (11, 5, 'Pasiphae', 'little', 30);
+INSERT INTO public.moon VALUES (12, 5, 'Sinope', 'tiny', 19);
+INSERT INTO public.moon VALUES (13, 5, 'Lysithea', 'cute', 18);
+INSERT INTO public.moon VALUES (14, 5, 'Carme', 'little', 23);
+INSERT INTO public.moon VALUES (15, 5, 'Ananke', 'small', 14);
+INSERT INTO public.moon VALUES (16, 5, 'Leda', 'teeny', 10);
+INSERT INTO public.moon VALUES (17, 5, 'Thebe', 'bumpy', 49);
+INSERT INTO public.moon VALUES (18, 6, 'Rhea', 'gray', 764);
+INSERT INTO public.moon VALUES (19, 6, 'Titan', 'yellow', 2575);
+INSERT INTO public.moon VALUES (20, 6, 'Hyperion', 'bumpy oblong', 135);
+INSERT INTO public.moon VALUES (21, 6, 'Phoebe', 'bumpy small', 106);
+INSERT INTO public.moon VALUES (22, 8, 'Titania', 'gray big', 789);
+INSERT INTO public.moon VALUES (23, 8, 'Oberon', 'gray big', 761);
+INSERT INTO public.moon VALUES (24, 7, 'Triton', 'blue', 1353);
+INSERT INTO public.moon VALUES (25, 9, 'Charon', 'rust colored', 606);
 
 
 --
 -- Data for Name: planet; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.planet VALUES (1, 1, 'Mercury', false, 'Closest planet to Sun');
+INSERT INTO public.planet VALUES (2, 1, 'Venus', false, 'Second planet to Sun');
+INSERT INTO public.planet VALUES (3, 1, 'Earth', true, 'Our home');
+INSERT INTO public.planet VALUES (4, 1, 'Mars', false, 'Occupy Mars');
+INSERT INTO public.planet VALUES (5, 1, 'Jupiter', false, 'Has a big spot');
+INSERT INTO public.planet VALUES (6, 1, 'Saturn', false, 'Has rings');
+INSERT INTO public.planet VALUES (7, 1, 'Neptune', false, 'Makes me think of water');
+INSERT INTO public.planet VALUES (8, 1, 'Uranus', false, 'It is out there');
+INSERT INTO public.planet VALUES (9, 1, 'Pluto', false, 'Way out there');
+INSERT INTO public.planet VALUES (10, 1, 'Eris', false, 'small planet');
+INSERT INTO public.planet VALUES (11, 1, 'Haumea', false, 'another small planet');
+INSERT INTO public.planet VALUES (12, 1, 'Makemake', false, 'funny name');
+INSERT INTO public.planet VALUES (13, 1, 'Gonggong', false, 'repeats');
 
 
 --
 -- Data for Name: star; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.star VALUES (1, 1, 'G2V', 8, 0.0, 'Sun');
+INSERT INTO public.star VALUES (2, 1, 'A0mA1 Va', 0, 8.6, 'Sirius A');
+INSERT INTO public.star VALUES (3, 1, 'DA2', 0, 8.6, 'Sirius B');
+INSERT INTO public.star VALUES (4, 1, 'A9 II', 0, 310, 'Canopus');
+INSERT INTO public.star VALUES (5, 1, 'K1.5III', 0, 37.0, 'Arcturus');
+INSERT INTO public.star VALUES (6, 1, 'F7Ib', 0, 430.0, 'Polaris');
 
 
 --
 -- Data for Name: telescope; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.telescope VALUES (1, 'Transiting Exoplanet Survery Satellite', '2018-12-18');
+INSERT INTO public.telescope VALUES (2, 'Kepler', '2009-03-06');
+INSERT INTO public.telescope VALUES (3, 'Hubble Space Telescope', '1990-04-24');
+INSERT INTO public.telescope VALUES (4, 'James Webb Space Telescope', '2021-12-25');
 
 
 --
 -- Name: galaxy_universe_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.galaxy_universe_id_seq', 1, false);
+SELECT pg_catalog.setval('public.galaxy_universe_id_seq', 6, true);
 
 
 --
 -- Name: moon_moon_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.moon_moon_id_seq', 1, false);
+SELECT pg_catalog.setval('public.moon_moon_id_seq', 25, true);
 
 
 --
 -- Name: planet_planet_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.planet_planet_id_seq', 1, false);
+SELECT pg_catalog.setval('public.planet_planet_id_seq', 13, true);
 
 
 --
 -- Name: star_star_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.star_star_id_seq', 1, false);
+SELECT pg_catalog.setval('public.star_star_id_seq', 6, true);
 
 
 --
 -- Name: telescope_telescope_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.telescope_telescope_id_seq', 1, false);
+SELECT pg_catalog.setval('public.telescope_telescope_id_seq', 4, true);
 
 
 --
